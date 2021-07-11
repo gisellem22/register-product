@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ProductsService } from 'src/app/services/products.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,11 +20,16 @@ export class RegisterComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
   timer: number;
+  isLoading: boolean;
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit() {
     this.timer = 2000;
+    this.isLoading = false;
     // this.filteredOptions = this.myControl.valueChanges.pipe(
     //   startWith(''),
     //   map((value) => this._filter(value))
@@ -51,6 +57,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.form.value);
+
     this.form.valid ? this.saveProduct() : this.invalidForm();
   }
 
@@ -65,12 +73,28 @@ export class RegisterComponent implements OnInit {
   }
 
   saveProduct() {
-    Swal.fire({
-      title: 'Registered',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: this.timer,
-      heightAuto: false,
-    });
+    this.isLoading = true;
+    const product = {
+      product: this.form.controls.product.value,
+      date: '',
+      origin: this.form.controls.origin.value,
+      destiny: this.form.controls.destiny.value,
+    };
+    this.productsService.save(product).subscribe(
+      (response) => {
+        this.isLoading = false;
+        console.log(response);
+        Swal.fire({
+          title: 'Registered',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: this.timer,
+          heightAuto: false,
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-deliver',
@@ -31,14 +32,6 @@ export class DeliverComponent implements AfterViewInit {
       centered: true,
     });
   }
-}
-
-export interface Product {
-  product: string;
-  date: string;
-  origin: string;
-  destiny: string;
-  route: string;
 }
 
 const ELEMENT_DATA: Product[] = [
