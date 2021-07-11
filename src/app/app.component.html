@@ -1,12 +1,12 @@
 <div class="h-100 p-md-5 px-2 pt-5">
-    <div class="btn-group d-flex">
-        <a routerLink="/register" routerLinkActive="active" class="btn btn-outline-dark btn-lg">{{ 'register' |
-            uppercase }}</a>
-        <a routerLink="/deliver" routerLinkActive="active" class="btn btn-outline-dark btn-lg">{{ 'delivery' | uppercase
-            }}</a>
-    </div>
+
+    <app-navbar></app-navbar>
 
     <div id="router" class="mt-2">
         <router-outlet></router-outlet>
+    </div>
+
+    <div>
+        <app-footer></app-footer>
     </div>
 </div>

@@ -1,0 +1,16 @@
+footer {
+  background-color: rgba(0, 0, 0, 0.04);
+  height: 48px;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  font-family: "Montserrat", sans-serif;
+}
+
+@media (max-width: 480px) {
+  footer {
+    font-size: 12px;
+  }
+}
