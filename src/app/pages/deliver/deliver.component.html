@@ -1,7 +1,7 @@
 <div class="h-100 px-2 pb-2">
 
     <div class="h-100 d-flex justify-content-center align-items-center">
-        <div class="mat-elevation-z8 ">
+        <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource">
 
                 <!-- Product Column -->
@@ -32,7 +32,7 @@
                 <ng-container matColumnDef="route">
                     <th mat-header-cell *matHeaderCellDef>Best Route</th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
+                        <button mat-icon-button color="accent" aria-label="See best route" (click)="openModalMap()">
                             <mat-icon>place</mat-icon>
                         </button>
                         <!-- {{element.route}} -->

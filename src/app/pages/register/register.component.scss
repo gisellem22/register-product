@@ -1,5 +1,5 @@
 .register-container {
-  width: 300px;
+  min-width: 500px;
 }
 
 .register-form {
@@ -10,5 +10,18 @@
 
 mat-form-field,
 button {
-  min-width: 250px;
+  min-width: 450px;
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    min-width: 100%;
+  }
+  mat-form-field,
+  button {
+    min-width: 80vw;
+  }
+  .register-container {
+    min-width: 90vw;
+  }
 }

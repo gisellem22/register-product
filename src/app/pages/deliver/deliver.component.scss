@@ -1,3 +1,15 @@
 table {
   width: 70vw;
 }
+
+@media (max-width: 768px) {
+  table {
+    width: calc(100vw - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  table {
+    width: calc(100vw);
+  }
+}
