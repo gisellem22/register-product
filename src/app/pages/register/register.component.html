@@ -4,18 +4,18 @@
 
         <div class="register-container d-flex justify-content-center shadow rounded pt-4">
 
-            <form class="register-form pb-4">
+            <form class="register-form pb-4" [formGroup]="form" (ngSubmit)="onSubmit()">
 
                 <!-- Product name -->
                 <mat-form-field appearance="fill">
                     <mat-label>Product Name</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="product">
                 </mat-form-field>
 
                 <!-- Datepicker -->
                 <mat-form-field appearance="fill">
                     <mat-label>Delivery Date</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input matInput [matDatepicker]="picker" formControlName="date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -23,11 +23,11 @@
                 <!-- Origin -->
                 <mat-form-field appearance="fill">
                     <mat-label>Origin Address </mat-label>
-                    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                    <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="origin"
                         [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
+                        <mat-option>
+                            {{'destiny'}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
@@ -35,17 +35,17 @@
                 <!-- Destiny -->
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Destiny Address</mat-label>
-                    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                    <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="destiny"
                         [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
+                        <mat-option>
+                            {{'destiny'}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
 
                 <!-- SAVE -->
-                <button mat-raised-button color="accent">SAVE</button>
+                <button mat-raised-button color="accent" type="submit">SAVE</button>
 
             </form>
         </div>
