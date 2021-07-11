@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/app/models/product.model';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-deliver',
@@ -11,13 +12,7 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./deliver.component.scss'],
 })
 export class DeliverComponent implements AfterViewInit {
-  displayedColumns: string[] = [
-    'product',
-    'date',
-    'origin',
-    'destiny',
-    'route',
-  ];
+  displayedColumns: string[] = Constants.displayedColumns;
   dataSource = new MatTableDataSource<Product>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

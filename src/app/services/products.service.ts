@@ -12,6 +12,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   save(product: Product): Observable<Product> {
+    console.log(product);
     return this.http.post<Product>(this.url, product);
   }
 }

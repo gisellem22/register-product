@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ProductsService } from 'src/app/services/products.service';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +26,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -76,7 +79,10 @@ export class RegisterComponent implements OnInit {
     this.isLoading = true;
     const product = {
       product: this.form.controls.product.value,
-      date: '',
+      date: this.datePipe.transform(
+        this.form.controls.date.value,
+        Constants.formatDate
+      ),
       origin: this.form.controls.origin.value,
       destiny: this.form.controls.destiny.value,
     };
