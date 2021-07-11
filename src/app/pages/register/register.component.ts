@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,12 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
+  timer: number;
 
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.timer = 2000;
     // this.filteredOptions = this.myControl.valueChanges.pipe(
     //   startWith(''),
     //   map((value) => this._filter(value))
@@ -48,15 +51,26 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submit', this.form.value);
-    if (this.form.valid) {
-      this.saveProduct();
-    } else {
-      console.log('open modal');
-    }
+    this.form.valid ? this.saveProduct() : this.invalidForm();
+  }
+
+  invalidForm() {
+    Swal.fire({
+      title: 'Fields Required',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: this.timer,
+      heightAuto: false,
+    });
   }
 
   saveProduct() {
-    console.log('save here');
+    Swal.fire({
+      title: 'Registered',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: this.timer,
+      heightAuto: false,
+    });
   }
 }
