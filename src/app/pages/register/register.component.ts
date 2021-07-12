@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { ProductsService } from 'src/app/services/products.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 import { Constants } from 'src/app/utils/constants';
+import { Address, Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +18,8 @@ export class RegisterComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   timer: number;
   isLoading: boolean;
+  originAddress: Address;
+  destinationAddress: Address;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -33,11 +30,30 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.timer = 2000;
     this.isLoading = false;
-    // this.filteredOptions = this.myControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map((value) => this._filter(value))
-    // );
     this.buildForm();
+  }
+
+  public AddressChange(address: any, type: string) {
+    //setting address from API to local variable
+    const formattedaddress = {
+      address: address.formatted_address,
+      lat: address.geometry.location.lat(),
+      lng: address.geometry.location.lng(),
+    };
+    console.log('formattedaddress--->', formattedaddress);
+
+    switch (type) {
+      case 'O':
+        this.form.controls.origin.setValue(formattedaddress.address);
+        this.originAddress = formattedaddress;
+        break;
+      case 'D':
+        this.form.controls.destination.setValue(formattedaddress.address);
+        this.destinationAddress = formattedaddress;
+        break;
+    }
+    console.log('lat--->', address.geometry.location.lat());
+    console.log('lon--->', address.geometry.location.lng());
   }
 
   private _filter(value: string): string[] {
@@ -54,7 +70,7 @@ export class RegisterComponent implements OnInit {
       product: ['', [Validators.required]],
       date: ['', [Validators.required]],
       origin: ['', [Validators.required]],
-      destiny: ['', [Validators.required]],
+      destination: ['', [Validators.required]],
     });
     /* eslint-enable */
   }
@@ -77,19 +93,22 @@ export class RegisterComponent implements OnInit {
 
   saveProduct() {
     this.isLoading = true;
-    const product = {
+    const product: Product = {
       product: this.form.controls.product.value,
       date: this.datePipe.transform(
         this.form.controls.date.value,
         Constants.formatDate
       ),
-      origin: this.form.controls.origin.value,
-      destiny: this.form.controls.destiny.value,
+      origin: this.originAddress,
+      destination: this.destinationAddress,
     };
     this.productsService.save(product).subscribe(
       (response) => {
         this.isLoading = false;
+        // this.originAddress = null;
+        // this.destinationAddress = null;
         console.log(response);
+        this.form.reset();
         Swal.fire({
           title: 'Registered',
           icon: 'success',

@@ -21,28 +21,32 @@
                 </mat-form-field>
 
                 <!-- Origin -->
-                <mat-form-field appearance="fill">
+                <!-- <mat-form-field appearance="fill">
                     <mat-label>Origin Address </mat-label>
                     <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="origin"
                         [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option>
-                            {{'destiny'}}
+                            {{'destination'}}
                         </mat-option>
                     </mat-autocomplete>
+                </mat-form-field> -->
+
+                <!-- Origin -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Origin</mat-label>
+                    <input type="text" placeholder="Enter Address" matInput ngx-google-places-autocomplete
+                        formControlName="origin" (onAddressChange)="AddressChange($event, 'O')">
                 </mat-form-field>
 
-                <!-- Destiny -->
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Destiny Address</mat-label>
-                    <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="destiny"
-                        [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option>
-                            {{'destiny'}}
-                        </mat-option>
-                    </mat-autocomplete>
+
+                <!-- destination -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Destination</mat-label>
+                    <input type="text" placeholder="Enter Address" matInput ngx-google-places-autocomplete
+                        formControlName="destination" (onAddressChange)="AddressChange($event, 'D')">
                 </mat-form-field>
+
 
                 <!-- SAVE -->
                 <button mat-raised-button color="accent" type="submit">

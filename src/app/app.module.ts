@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatPaginatorModule,
     MatIconModule,
     NgbModule,
+    GooglePlaceModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
