@@ -1,65 +1,57 @@
-<div class="h-100 px-2 pb-2">
+<div class="m-auto my-3 rounded">
+  <form class="text-center py-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Product name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input matInput formControlName="product" />
+    </mat-form-field>
 
-    <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+    <!-- Datepicker -->
+    <mat-form-field appearance="fill">
+      <mat-label>Delivery Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-        <div class="register-container d-flex justify-content-center shadow rounded pt-4">
+    <!-- Origin -->
+    <mat-form-field appearance="fill">
+      <mat-label>Origin</mat-label>
+      <input
+        type="text"
+        placeholder="Enter Address"
+        matInput
+        ngx-google-places-autocomplete
+        formControlName="origin"
+        (onAddressChange)="AddressChange($event, 'O')"
+      />
+    </mat-form-field>
 
-            <form class="register-form pb-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- destination -->
+    <mat-form-field appearance="fill">
+      <mat-label>Destination</mat-label>
+      <input
+        type="text"
+        placeholder="Enter Address"
+        matInput
+        ngx-google-places-autocomplete
+        formControlName="destination"
+        (onAddressChange)="AddressChange($event, 'D')"
+      />
+    </mat-form-field>
 
-                <!-- Product name -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Product Name</mat-label>
-                    <input matInput formControlName="product">
-                </mat-form-field>
-
-                <!-- Datepicker -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Delivery Date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-
-                <!-- Origin -->
-                <!-- <mat-form-field appearance="fill">
-                    <mat-label>Origin Address </mat-label>
-                    <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="origin"
-                        [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option>
-                            {{'destination'}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field> -->
-
-                <!-- Origin -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Origin</mat-label>
-                    <input type="text" placeholder="Enter Address" matInput ngx-google-places-autocomplete
-                        formControlName="origin" (onAddressChange)="AddressChange($event, 'O')">
-                </mat-form-field>
-
-
-                <!-- destination -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Destination</mat-label>
-                    <input type="text" placeholder="Enter Address" matInput ngx-google-places-autocomplete
-                        formControlName="destination" (onAddressChange)="AddressChange($event, 'D')">
-                </mat-form-field>
-
-
-                <!-- SAVE -->
-                <button mat-raised-button color="accent" type="submit">
-                    <p class="mb-0" *ngIf="!isLoading">SAVE</p>
-                    <span *ngIf="isLoading">
-                        <div class="spinner-border text-light" style="width: 1rem; height: 1rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </span>
-                </button>
-
-            </form>
+    <!-- SAVE -->
+    <button mat-raised-button color="accent" type="submit" class="mt-3">
+      <p class="mb-0" *ngIf="!isLoading">SAVE</p>
+      <span *ngIf="isLoading">
+        <div
+          class="spinner-border text-light"
+          style="width: 1rem; height: 1rem"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
         </div>
-
-    </div>
+      </span>
+    </button>
+  </form>
 </div>

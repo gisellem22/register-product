@@ -1,9 +1,11 @@
-#router {
-  height: calc(100% - 100px);
+.center-container {
+  width: 60%;
+  background-color: #fff !important ;
+  height: calc(100% - 96px);
 }
 
 @media (max-width: 768px) {
-  #router {
-    height: calc(100% - 130px);
+  .center-container {
+    width: 90%;
   }
 }

@@ -1,12 +1,10 @@
-<div class="h-100 p-md-5 px-2 pt-5">
-
+<div class="center-container m-auto">
+  <div class="pt-4 text-center">
+    <img src="../assets/img/gigi-logo.svg" height="100" class="mb-3" alt="" />
+  </div>
+  <div class="px-2 px-md-5">
     <app-navbar></app-navbar>
-
-    <div id="router" class="mt-2">
-        <router-outlet></router-outlet>
-    </div>
-
-    <div>
-        <app-footer></app-footer>
-    </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>
