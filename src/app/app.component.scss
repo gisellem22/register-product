@@ -1,11 +1,27 @@
 .center-container {
   width: 60%;
+  height: calc(100vh - 53px);
   background-color: #fff !important ;
-  height: calc(100% - 96px);
+  img {
+    height: 100px;
+  }
 }
 
 @media (max-width: 768px) {
   .center-container {
     width: 90%;
+    img {
+      height: 60px;
+    }
+  }
+}
+
+@media (max-width: 325px) {
+  .center-container {
+    width: 90%;
+    height: auto !important;
+    img {
+      height: 60px;
+    }
   }
 }

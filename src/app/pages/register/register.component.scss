@@ -1,11 +1,19 @@
 mat-form-field,
 button {
-  min-width: 450px;
+  min-width: 50%;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20%;
+}
 @media (max-width: 768px) {
   mat-form-field,
   button {
     min-width: 90%;
+  }
+  form {
+    margin: 0 5%;
   }
 }

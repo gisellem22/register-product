@@ -11,6 +11,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DeliverComponent } from './pages/deliver/deliver.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ModalMapComponent } from './components/modal-map/modal-map.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -21,9 +25,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     MatPaginatorModule,
     MatIconModule,
     NgbModule,
+    MatTabsModule,
     GooglePlaceModule,
   ],
   providers: [DatePipe],
