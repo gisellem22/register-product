@@ -1,6 +1,6 @@
 .center-container {
   width: 60%;
-  height: calc(100% - 53px);
+  height: 100%;
   background-color: #fff !important ;
   img {
     height: 100px;
@@ -10,8 +10,6 @@
 @media (max-width: 768px) {
   .center-container {
     width: 90%;
-    height: 100vh;
-
     img {
       height: 60px;
     }
